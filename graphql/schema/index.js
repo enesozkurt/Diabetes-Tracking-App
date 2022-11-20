@@ -17,6 +17,12 @@ module.exports = buildSchema(`
             createdRecords: [Record!]
         }
         
+        type AuthData {
+            userId: ID!
+            token: String!
+            tokenExpiration: Int!
+        }
+        
         input RecordInput {
             title: String!
             description: String
@@ -31,6 +37,7 @@ module.exports = buildSchema(`
         
         type RootQuery {
             records: [Record!]!
+            login(email: String!, password: String!): AuthData!
         }
         type RootMutation {
             createRecord(recordInput: RecordInput): Record

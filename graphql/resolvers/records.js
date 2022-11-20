@@ -14,20 +14,23 @@ module.exports = {
             throw err;
         }
     },
-    createRecord: async (args) => {
+    createRecord: async (args, req) => {
+        if (!req.isAuth) {
+            throw new Error('Unauthenticated!')
+        }
         const record = new Record({
             title: args.recordInput.title,
             description: args.recordInput.description,
             bloodGlucose: +args.recordInput.bloodGlucose,
             date: dateToString(args.recordInput.date),
-            creator: '636ade0c5430a22c0c23737e'
+            creator: req.userId
         });
         let createdRecord;
         try {
             const result = await record
                 .save()
             createdRecord = transformRecord(result);
-            const creator = await User.findById('636ade0c5430a22c0c23737e')
+            const creator = await User.findById(req.userId)
             if (!creator) {
                 throw new Error('User not found.')
             }
