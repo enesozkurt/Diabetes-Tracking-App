@@ -5,7 +5,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import LoginImage from '../assets/diabetes.jpg'
-import './Auth.css'
+
+import AuthContext from "../context/auth-context";
 
 const theme = createTheme();
 
@@ -18,6 +19,8 @@ class AuthPage extends Component {
             isLogin: true
         }
     }
+
+    static contextType = AuthContext;
 
     submitHandler = (event) => {
         event.preventDefault();
@@ -47,7 +50,13 @@ class AuthPage extends Component {
                 return res.json();
             })
             .then(resData => {
-                console.log(resData);
+                if (resData.data.login.token) {
+                    this.context.login(
+                        resData.data.login.token,
+                        resData.data.login.userId,
+                        resData.data.login.tokenExpiration
+                    )
+                }
             })
             .catch(error => {
                 console.log(error)

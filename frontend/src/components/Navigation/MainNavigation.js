@@ -11,9 +11,6 @@ const mainNavigation = props => (
         <nav className="main-navigation__items">
             <ul>
                 <li>
-                    <NavLink to="/auth">Authenticate</NavLink>
-                </li>
-                <li>
                     <NavLink to="/records">Records</NavLink>
                 </li>
             </ul>
