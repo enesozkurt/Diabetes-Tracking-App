@@ -13,7 +13,7 @@ import RecordsPage from "./pages/Records";
 function App() {
   return (
     <BrowserRouter>
-        <MainNavigation />
+        {/*<MainNavigation />*/}
         <main className="main-content">
             <Routes>
                 <Route path="/" element={<Navigate replace to="/auth" />} />

@@ -1,7 +1,13 @@
 import React, { Component } from "react";
-import { Box, TextField, Button} from '@mui/material';
+import { Box, TextField, Button, Grid, Paper, CssBaseline, Avatar, Typography, Link  } from '@mui/material';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+import LoginImage from '../assets/diabetes.jpg'
 import './Auth.css'
+
+const theme = createTheme();
 
 class AuthPage extends Component {
     constructor(props) {
@@ -58,49 +64,91 @@ class AuthPage extends Component {
 
     render() {
         return (
-                <Box
-                    component="form"
-                    sx={{
-                        width: 500,
-                        maxWidth: '100%',
-                        margin: '5rem auto'
-                    }}
-                    noValidate
-                    autoComplete="off"
-                    className="auth-form"
-                    onSubmit={this.submitHandler}
-                >
-                        <div className="form-control">
-                            <TextField
-                                required
-                                error={this.state.email.trim().length === 0  ? true : false}
-                                onChange={event => this.setState({ email: event.target.value })}
-                                id="email"
-                                label="E-mail"
-                                type="email"
-                                autoComplete="current-password"
-                                variant="filled"
-                                fullWidth
-                            />
-                        </div>
-                        <div className="form-control">
-                            <TextField
-                                required
-                                error={this.state.password.trim().length === 0 ? true : false}
-                                onChange={event => this.setState({ password: event.target.value })}
-                                id="password"
-                                label="Password"
-                                type="password"
-                                autoComplete="current-password"
-                                variant="filled"
-                                fullWidth
-                            />
-                        </div>
-                        <div className="form-actions">
-                            <Button type="button" variant="outlined" onClick={this.submitHandler}>Submit</Button>
-                            <Button type="submit" variant="contained" onClick={this.switchModeHandler}>Switch to {this.state.isLogin ? 'Signup' : 'Login'}</Button>
-                        </div>
-                </Box>
+            <ThemeProvider theme={theme}>
+                <Grid container component="main" sx={{ height: '100vh' }}>
+                    <CssBaseline />
+                    <Grid
+                        item
+                        xs={false}
+                        sm={4}
+                        md={7}
+                        sx={{
+                            backgroundImage: `url(${LoginImage})`,
+                            backgroundRepeat: 'no-repeat',
+                            backgroundColor: (t) =>
+                                t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                        }}
+                    />
+                    <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+                        <Box
+                            sx={{
+                                my: 8,
+                                mx: 4,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                            }}
+                        >
+                            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                                <LockOutlinedIcon />
+                            </Avatar>
+                            <Typography component="h1" variant="h5">
+                                Sign in
+                            </Typography>
+                            <Box
+                                component="form"
+                                sx={{ mt: 1 }}
+                                noValidate
+                                autoComplete="off"
+                                className="auth-form"
+                                onSubmit={this.submitHandler}
+                            >
+                                    <TextField
+                                        error={this.state.email.trim().length === 0  ? true : false}
+                                        onChange={event => this.setState({ email: event.target.value })}
+                                        variant="filled"
+                                        margin="normal"
+                                        required
+                                        fullWidth
+                                        id="email"
+                                        label="Email Address"
+                                        name="email"
+                                        autoComplete="email"
+                                        autoFocus
+                                    />
+                                    <TextField
+                                        error={this.state.password.trim().length === 0 ? true : false}
+                                        onChange={event => this.setState({ password: event.target.value })}
+                                        variant="filled"
+                                        margin="normal"
+                                        required
+                                        fullWidth
+                                        name="password"
+                                        label="Password"
+                                        type="password"
+                                        id="password"
+                                        autoComplete="current-password"
+                                    />
+                                    <Button type="submit" fullWidth variant="contained"  sx={{ mt: 3, mb: 2 }} onClick={this.submitHandler}>Sign In</Button>
+                                <Grid container>
+                                    <Grid item xs>
+                                        <Link href="#" variant="body2">
+                                            Forgot password?
+                                        </Link>
+                                    </Grid>
+                                    <Grid item>
+                                        <Link href="#" variant="body2">
+                                            {"Don't have an account? Sign Up"}
+                                        </Link>
+                                    </Grid>
+                                </Grid>
+                            </Box>
+                        </Box>
+                    </Grid>
+                </Grid>
+            </ThemeProvider>
         );
     }
 }
