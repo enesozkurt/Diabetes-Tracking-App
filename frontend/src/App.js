@@ -33,7 +33,7 @@ function App() {
             {token && <MainNavigation />}
             <main className="main-content">
                 <Routes>
-                    {!token && <Route path="/" element={<Navigate replace to="/auth" />} />}
+                    {!token && <Route path="*" element={<Navigate replace to="/auth" />} />}
                     {token && <Route path="/auth" element={<Navigate replace to="/records" />} />}
                     {!token && <Route path="/auth" element={<AuthPage/>} />}
                     {token && <Route path="/records" element={<RecordsPage />} />}
