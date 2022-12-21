@@ -12,6 +12,8 @@ import AuthContext from "./context/auth-context";
 import AuthPage from "./pages/Auth";
 import RecordsPage from "./pages/Records";
 
+import './App.css'
+
 function App() {
     // Declare a new state variable,
     const [token, setToken] = useState(null);
