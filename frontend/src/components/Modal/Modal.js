@@ -118,7 +118,7 @@ function ModalComponent (props) {
 
     return (
         <>
-            <Button onClick={handleOpen}>Open modal</Button>
+            <Button variant="contained" onClick={handleOpen} sx={{ float: "right" }}>New Record</Button>
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -181,7 +181,7 @@ function ModalComponent (props) {
                     </Box>
                     <Divider/>
                     <Box sx={{ mt: 2, display: 'flex', justifyContent: 'end' }}>
-                        <Button variant="contained" color="error" sx={{ marginX: 2}}>Cancel</Button>
+                        <Button variant="contained" color="error" sx={{ marginX: 2}} onClick={handleClose}>Cancel</Button>
                         <Button variant="contained" color="success" onClick={confirmHandler}>Confirm</Button>
                     </Box>
                 </Box>

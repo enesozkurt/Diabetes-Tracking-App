@@ -7,7 +7,6 @@ class RecordsPage extends Component {
     render() {
         return (
             <>
-                <h1>Records Page</h1>
                 <ModalComponent token={this.context.token} />
             </>
         );
