@@ -6,13 +6,17 @@ const columns = [
         selector: row => row.title,
     },
     {
+        name: 'Description',
+        selector: row => row.description,
+    },
+    {
         name: 'Blood Glucose',
         selector: row => row.bloodGlucose,
         sortable: true,
     },
     {
         name: 'Date',
-        selector: row => row.date,
+        selector: row => new Date(row.date).toLocaleString('tr-TR'),
         sortable: true,
     },
 ];

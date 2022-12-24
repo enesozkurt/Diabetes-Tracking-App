@@ -19,11 +19,11 @@ import AuthContext from "../../context/auth-context";
 function Router(props) {
     const { children } = props;
     if (typeof window === 'undefined') {
-        return <StaticRouter location="/drafts">{children}</StaticRouter>;
+        return <StaticRouter location="/stats">{children}</StaticRouter>;
     }
 
     return (
-        <MemoryRouter initialEntries={['/drafts']} initialIndex={0}>
+        <MemoryRouter initialEntries={['/stats']} initialIndex={0}>
             {children}
         </MemoryRouter>
     );
@@ -52,14 +52,14 @@ function MyTabs() {
     // This means that if you have nested routes like:
     // users, users/new, users/edit.
     // Then the order should be ['users/add', 'users/edit', 'users'].
-    const routeMatch = useRouteMatch(['/records', '/drafts', '/trash']);
+    const routeMatch = useRouteMatch(['/records', '/stats', '/logbook']);
     const currentTab = routeMatch?.pattern?.path;
 
     return (
         <Tabs value={currentTab}>
             <Tab label="Records" value="/records" to="/records" component={Link} />
-            <Tab label="Drafts" value="/drafts" to="/drafts" component={Link} />
-            <Tab label="Trash" value="/trash" to="/trash" component={Link} />
+            <Tab label="Stats" value="/stats" to="/stats" component={Link} />
+            <Tab label="LogBook" value="/logbook" to="/logbook" component={Link} />
         </Tabs>
     );
 }

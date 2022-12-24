@@ -56,7 +56,7 @@ function ModalComponent (props) {
         console.log(event)
 
         const reqBody = {
-            query: `mutation{createRecord(recordInput: {title: "${title}", description: "${description}", bloodGlucose: ${bloodGlucose}, date: "${date}"}) {_id title description date bloodGlucose}}`
+            query: `mutation{createRecord(recordInput: {title: "${title}", description: "${description}", bloodGlucose: ${bloodGlucose}, date: "${date}"}) {_id title description date bloodGlucose creator{_id email}}}`
         }
 
         const token = props.token;

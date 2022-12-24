@@ -11,6 +11,8 @@ import AuthContext from "./context/auth-context";
 
 import AuthPage from "./pages/Auth";
 import RecordsPage from "./pages/Records";
+import StatsPage from "./pages/Stats";
+import LogbookPage from "./pages/Logbook";
 
 import './App.css'
 
@@ -39,6 +41,8 @@ function App() {
                     {token && <Route path="/auth" element={<Navigate replace to="/records" />} />}
                     {!token && <Route path="/auth" element={<AuthPage/>} />}
                     {token && <Route path="/records" element={<RecordsPage />} />}
+                    {token && <Route path="/stats" element={<StatsPage />} />}
+                    {token && <Route path="/logbook" element={<LogbookPage />} />}
                 </Routes>
             </main>
         </AuthContext.Provider>
