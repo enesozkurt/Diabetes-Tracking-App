@@ -3,6 +3,7 @@ import Grid from '@mui/material/Grid';
 import Highlights from "../components/Highlights/Highlights";
 import PieChartComponent from "../components/Chart/PieChart/PieChartComponent";
 import LineChartComponent from "../components/Chart/LineChart/LineChartComponent";
+import BarChartComponent from "../components/Chart/BarChart/BarChartComponent";
 
 class StatsPage extends Component  {
     constructor(props) {
@@ -57,7 +58,17 @@ class StatsPage extends Component  {
                         <Highlights maxValue={this.state.highest} minValue={this.state.lowest} average={this.state.average} />
                     </Grid>
                 </Grid>
-                <PieChartComponent />
+                <Grid container spacing={2} mt={6}>
+                    <Grid item xs={12} md={6}>
+                        <h4>Last 7 Records</h4>
+                        <PieChartComponent records={this.state.records} />
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                        <h4>Last 7 Records</h4>
+                        <BarChartComponent records={this.state.records} />
+                    </Grid>
+                </Grid>
+                <h4>Last 7 Records</h4>
                 <LineChartComponent records={this.state.records} />
             </>
         )

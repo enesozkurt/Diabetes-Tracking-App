@@ -56,7 +56,7 @@ function ModalComponent (props) {
         console.log(event)
 
         const reqBody = {
-            query: `mutation{createRecord(recordInput: {title: "${title}", description: "${description}", bloodGlucose: ${bloodGlucose}, date: "${date}"}) {_id title description date bloodGlucose creator{_id email}}}`
+            query: `mutation{createRecord(recordInput: {title: "${title}", description: "${description}", bloodGlucose: ${bloodGlucose}, date: "${date}"}) {_id title description date bloodGlucose}}`
         }
 
         const token = props.token;
@@ -90,7 +90,7 @@ function ModalComponent (props) {
 
     const fetchRecords = () => {
         let reqBody = {
-            query: `query{records{_id title description date bloodGlucose}}`
+            query: `query{records{_id title description date bloodGlucose creator{_id email}}}`
         }
 
         fetch('http://localhost:8000/graphql', {

@@ -30,8 +30,6 @@ const LineChartComponent = (props) => {
 
     return (
         <div style={{ width: '100%' }}>
-            <h4>Weekly Values</h4>
-
             <ResponsiveContainer width="100%" height={200}>
                 <AreaChart
                     width={500}

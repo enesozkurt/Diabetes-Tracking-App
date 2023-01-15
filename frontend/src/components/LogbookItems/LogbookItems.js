@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Grid from '@mui/material/Grid';
+import {Grid, Alert, Container } from '@mui/material';
 import LogbookItemComponent from "./LogbookItem/LogbookItem";
 
 function LogbookItemsComponent(props) {
@@ -36,11 +36,13 @@ function LogbookItemsComponent(props) {
     }
     return (
         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-            {records.map((record, index) => (
+            {records.length !== 0 ? records.map((record, index) => (
                 <Grid item xs={2} sm={3} md={3} key={index}>
                     <LogbookItemComponent record={record} />
                 </Grid>
-            ))}
+            )) : <Container maxWidth="md">
+                    <Alert severity="warning">There are no records to display</Alert>
+                </Container>}
         </Grid>
     )
 }
