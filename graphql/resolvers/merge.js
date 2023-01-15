@@ -1,6 +1,15 @@
+const DataLoader = require('dataloader')
 const Record = require("../../models/record");
 const User = require("../../models/user");
 const { dateToString } = require("../../helpers/date");
+
+const recordLoader = new DataLoader((recordIds) => {
+    return records(recordIds)
+});
+
+const userLoader = new DataLoader(userIds => {
+    return User.find({_id: {$in: userIds}})
+});
 
 const records = async recordIds => {
     try {
@@ -16,8 +25,8 @@ const records = async recordIds => {
 
 const singleRecord = async recordId => {
     try {
-        const record = await Record.findById(recordId);
-        return transformRecord(record)
+        const record = await recordLoader.load(recordId.toString());
+        return record;
     } catch (err) {
         throw err;
     }
@@ -25,11 +34,11 @@ const singleRecord = async recordId => {
 
 const user = async userId => {
     try {
-        const user = await User.findById(userId)
+        const user = await userLoader.load(userId.toString())
         return {
             ...user._doc,
             _id: user.id,
-            createdRecords: records.bind(this, user._doc.createdRecords)
+            createdRecords: recordLoader.loadMany.bind(this, user._doc.createdRecords)
         };
     } catch (err) {
         throw err;
